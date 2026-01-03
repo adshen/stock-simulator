@@ -6,7 +6,6 @@ A fully-featured US stock trading simulator inspired by Charles Schwab's mobile 
 
 ### 📱 Mobile-First Design
 - **Full-screen support** - Enter fullscreen mode with one tap
-- **PWA (Progressive Web App)** - Add to home screen for a native app experience
 - **Responsive layout** - Works perfectly on all screen sizes
 - **Touch-optimized** - Smooth interactions designed for mobile
 
@@ -49,22 +48,11 @@ python3 -m http.server 8000
 # Visit http://localhost:8000
 ```
 
-### 📱 Full-Screen Mobile Experience
+### 📱 Full-Screen Experience
 
-#### For iPhone:
-1. Open the website in Safari
-2. Tap the Share button (📤)
-3. Select "Add to Home Screen"
-4. Open from home screen for full-screen app experience!
-
-#### For Android:
-1. Open the website in Chrome
-2. Tap the menu (⋮)
-3. Select "Add to Home Screen" or "Install App"
-4. Open from home screen for full-screen experience!
-
-#### In-App Fullscreen:
-- Tap the fullscreen button (⛶) in the top right corner
+- Tap the fullscreen button (⛶) in the top right corner to enter fullscreen mode
+- Works on both desktop and mobile browsers
+- Exit fullscreen by pressing ESC or tapping the button again
 
 ## 🎨 Pages & Navigation
 
@@ -122,8 +110,6 @@ python3 -m http.server 8000
 ### Built With
 - Pure HTML5, CSS3, JavaScript (ES6+)
 - No frameworks or dependencies
-- Progressive Web App (PWA) enabled
-- Service Worker for offline support
 - LocalStorage for settings persistence
 
 ### Browser Support
@@ -136,8 +122,8 @@ python3 -m http.server 8000
 - `index.html` - Main structure
 - `style.css` - Styling and animations
 - `script.js` - All interactive functionality
-- `manifest.json` - PWA configuration
-- `sw.js` - Service Worker for offline support
+- `favicon.svg` - Browser tab icon
+- `icon.svg` - App icon
 
 ## 🔐 Privacy & Security
 

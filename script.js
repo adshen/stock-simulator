@@ -300,21 +300,6 @@ document.addEventListener('touchend', function(event) {
     lastTouchEnd = now;
 }, false);
 
-// ============ PWA 支持 ============
-if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/sw.js').catch(function(error) {
-        console.log('ServiceWorker registration failed: ', error);
-    });
-}
-
-// 安装提示
-let deferredPrompt;
-window.addEventListener('beforeinstallprompt', (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
-    showToast('Tap "Add to Home Screen" for full screen experience!');
-});
-
 // ============ 时间问候语 ============
 function updateGreeting() {
     const hour = new Date().getHours();
