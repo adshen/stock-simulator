@@ -1,0 +1,354 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    background: #f5f5f5;
+    color: #333;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.app-container {
+    max-width: 600px;
+    margin: 0 auto;
+    background: #fff;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 60px;
+}
+
+/* 顶部导航栏 */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.header-left, .header-right {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+}
+
+.header-center {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+}
+
+/* 资产卡片 */
+.asset-card {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 20px 16px;
+    margin: 0;
+}
+
+.asset-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.asset-label {
+    font-size: 13px;
+    opacity: 0.9;
+}
+
+.asset-eye {
+    opacity: 0.8;
+}
+
+.asset-value {
+    font-size: 36px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.asset-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 12px;
+    backdrop-filter: blur(10px);
+}
+
+.asset-item {
+    flex: 1;
+    text-align: center;
+}
+
+.asset-item-label {
+    font-size: 11px;
+    opacity: 0.8;
+    margin-bottom: 4px;
+}
+
+.asset-item-value {
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.asset-item-percent {
+    font-size: 12px;
+    margin-top: 2px;
+}
+
+.asset-divider {
+    width: 1px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.profit {
+    color: #ff4757;
+}
+
+.loss {
+    color: #26de81;
+}
+
+/* 标签页 */
+.tabs {
+    display: flex;
+    background: white;
+    border-bottom: 1px solid #eee;
+    position: sticky;
+    top: 44px;
+    z-index: 99;
+}
+
+.tab {
+    flex: 1;
+    text-align: center;
+    padding: 14px 0;
+    font-size: 15px;
+    color: #666;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.tab.active {
+    color: #667eea;
+    font-weight: 600;
+}
+
+.tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 30px;
+    height: 3px;
+    background: #667eea;
+    border-radius: 3px 3px 0 0;
+}
+
+/* 股票列表 */
+.stock-list {
+    flex: 1;
+    overflow-y: auto;
+}
+
+.stock-item {
+    background: white;
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.stock-main {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.stock-info {
+    flex: 0 0 80px;
+}
+
+.stock-name {
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+}
+
+.stock-code {
+    font-size: 12px;
+    color: #999;
+}
+
+.stock-chart {
+    flex: 1;
+    height: 30px;
+}
+
+.mini-chart {
+    width: 100%;
+    height: 100%;
+}
+
+.mini-chart.profit {
+    color: #ff4757;
+}
+
+.mini-chart.loss {
+    color: #26de81;
+}
+
+.stock-price {
+    flex: 0 0 70px;
+    text-align: right;
+}
+
+.price {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 4px;
+}
+
+.change {
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.stock-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.btn {
+    flex: 1;
+    padding: 10px 0;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    touch-action: manipulation;
+}
+
+.btn:active {
+    transform: scale(0.97);
+}
+
+.btn-buy {
+    background: linear-gradient(135deg, #ff4757 0%, #ff6348 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(255, 71, 87, 0.3);
+}
+
+.btn-sell {
+    background: linear-gradient(135deg, #26de81 0%, #20bf6b 100%);
+    color: white;
+    box-shadow: 0 2px 8px rgba(38, 222, 129, 0.3);
+}
+
+/* 底部导航 */
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    background: white;
+    border-top: 1px solid #eee;
+    padding: 8px 0;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+}
+
+.nav-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    color: #999;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.nav-item.active {
+    color: #667eea;
+}
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+}
+
+/* 响应式设计 */
+@media (max-width: 400px) {
+    .asset-value {
+        font-size: 28px;
+    }
+    
+    .asset-item-value {
+        font-size: 13px;
+    }
+    
+    .stock-info {
+        flex: 0 0 70px;
+    }
+    
+    .stock-name {
+        font-size: 14px;
+    }
+    
+    .price {
+        font-size: 16px;
+    }
+}
+
+/* iOS 全屏支持 */
+@supports (padding: max(0px)) {
+    body {
+        padding-top: env(safe-area-inset-top);
+    }
+}
+
+/* 防止下拉刷新 */
+body {
+    overscroll-behavior: none;
+}
+
+/* 滚动优化 */
+.stock-list {
+    -webkit-overflow-scrolling: touch;
+}
+

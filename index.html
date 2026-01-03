@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <title>股票交易</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- 顶部导航栏 -->
+        <header class="header">
+            <div class="header-left">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span>自选</span>
+            </div>
+            <div class="header-center">股票交易</div>
+            <div class="header-right">
+                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <path d="m21 21-4.35-4.35"></path>
+                </svg>
+            </div>
+        </header>
+
+        <!-- 资产卡片 -->
+        <div class="asset-card">
+            <div class="asset-header">
+                <div class="asset-label">总资产 (元)</div>
+                <div class="asset-eye">
+                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                        <circle cx="12" cy="12" r="3"></circle>
+                    </svg>
+                </div>
+            </div>
+            <div class="asset-value">328,456.78</div>
+            <div class="asset-details">
+                <div class="asset-item">
+                    <div class="asset-item-label">今日盈亏</div>
+                    <div class="asset-item-value profit">+2,345.67</div>
+                    <div class="asset-item-percent profit">+0.72%</div>
+                </div>
+                <div class="asset-divider"></div>
+                <div class="asset-item">
+                    <div class="asset-item-label">持仓市值</div>
+                    <div class="asset-item-value">258,456.78</div>
+                </div>
+                <div class="asset-divider"></div>
+                <div class="asset-item">
+                    <div class="asset-item-label">可用资金</div>
+                    <div class="asset-item-value">70,000.00</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 标签页 -->
+        <div class="tabs">
+            <div class="tab active">自选股</div>
+            <div class="tab">持仓</div>
+            <div class="tab">行情</div>
+        </div>
+
+        <!-- 股票列表 -->
+        <div class="stock-list">
+            <!-- 股票项目1 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">招商银行</div>
+                        <div class="stock-code">600036</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart profit">
+                            <polyline points="0,25 10,20 20,22 30,15 40,18 50,12 60,8 70,10 80,5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price profit">42.68</div>
+                        <div class="change profit">+1.25%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+
+            <!-- 股票项目2 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">贵州茅台</div>
+                        <div class="stock-code">600519</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart profit">
+                            <polyline points="0,20 10,18 20,15 30,17 40,12 50,10 60,8 70,6 80,4" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price profit">1,678.50</div>
+                        <div class="change profit">+2.34%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+
+            <!-- 股票项目3 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">比亚迪</div>
+                        <div class="stock-code">002594</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart loss">
+                            <polyline points="0,5 10,8 20,12 30,10 40,15 50,18 60,20 70,22 80,25" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price loss">268.45</div>
+                        <div class="change loss">-0.88%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+
+            <!-- 股票项目4 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">宁德时代</div>
+                        <div class="stock-code">300750</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart profit">
+                            <polyline points="0,22 10,20 20,18 30,16 40,14 50,11 60,9 70,7 80,6" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price profit">456.78</div>
+                        <div class="change profit">+1.67%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+
+            <!-- 股票项目5 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">中国平安</div>
+                        <div class="stock-code">601318</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart loss">
+                            <polyline points="0,10 10,12 20,14 30,13 40,16 50,19 60,21 70,23 80,24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price loss">52.34</div>
+                        <div class="change loss">-1.23%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+
+            <!-- 股票项目6 -->
+            <div class="stock-item">
+                <div class="stock-main">
+                    <div class="stock-info">
+                        <div class="stock-name">腾讯控股</div>
+                        <div class="stock-code">00700</div>
+                    </div>
+                    <div class="stock-chart">
+                        <svg viewBox="0 0 80 30" class="mini-chart profit">
+                            <polyline points="0,18 10,16 20,19 30,14 40,13 50,10 60,12 70,8 80,7" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                        </svg>
+                    </div>
+                    <div class="stock-price">
+                        <div class="price profit">389.60</div>
+                        <div class="change profit">+0.95%</div>
+                    </div>
+                </div>
+                <div class="stock-actions">
+                    <button class="btn btn-buy">买入</button>
+                    <button class="btn btn-sell">卖出</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航 -->
+        <nav class="bottom-nav">
+            <div class="nav-item active">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                </svg>
+                <span>自选</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="12" y1="1" x2="12" y2="23"></line>
+                    <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
+                </svg>
+                <span>行情</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <span>交易</span>
+            </div>
+            <div class="nav-item">
+                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <circle cx="12" cy="7" r="4"></circle>
+                </svg>
+                <span>我的</span>
+            </div>
+        </nav>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
