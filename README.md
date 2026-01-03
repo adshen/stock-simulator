@@ -1,80 +1,188 @@
-# 股票交易模拟器
+# Schwab Mobile Trading Simulator 📈
 
-一个移动端优化的股票交易模拟网页，模仿真实股票软件的外观和体验。
+A fully-featured US stock trading simulator inspired by Charles Schwab's mobile app design. Perfect for demos, screenshots, or practicing trading interfaces!
 
-## 功能特点
+## ✨ Features
 
-- 📱 完美适配手机屏幕，支持全屏显示
-- 💰 资产总览卡片，显示总资产、今日盈亏、持仓市值等
-- 📊 股票列表，包含实时价格、涨跌幅和迷你图表
-- 🔴 买入/卖出按钮（仅用于展示）
-- 🎨 现代化渐变设计，美观大方
-- 👆 触摸优化，提供流畅的移动端体验
+### 📱 Mobile-First Design
+- **Full-screen support** - Enter fullscreen mode with one tap
+- **PWA (Progressive Web App)** - Add to home screen for a native app experience
+- **Responsive layout** - Works perfectly on all screen sizes
+- **Touch-optimized** - Smooth interactions designed for mobile
 
-## 如何使用
+### 💼 Complete Trading Interface
+- **Account Overview** - View total value, cash available, buying power, and gains/losses
+- **Positions Page** - See all your stock holdings with real-time P&L
+- **Markets Page** - Browse market indices, watchlist, and search stocks
+- **Trade Page** - View recent trades and access trading history
+- **More Page** - Account settings and additional features
 
-### 方法1：直接在电脑浏览器中打开
-```bash
-# 在文件夹中直接双击 index.html 文件
-```
+### 🎯 Interactive Features
+- **Buy/Sell Buttons** - Opens realistic trading modal (no actual trading)
+- **Stock Details** - Click any stock to view details
+- **Tab Navigation** - Switch between different sections
+- **Search Bar** - Search for stocks (UI only)
+- **Toast Notifications** - Get feedback for every action
 
-### 方法2：在手机上访问（推荐）
+### 🔒 Hidden Settings (Secret Feature!)
+**Long press** the account card (blue gradient card at top) for 1 second to open secret settings where you can:
+- Change your display name
+- Adjust total account value
+- Modify cash available
+- Set today's profit/loss
 
-#### 使用 Python 启动本地服务器：
+This makes it perfect for creating realistic screenshots with custom values!
+
+### 👁️ Privacy Features
+- Tap the eye icon to hide/show account values
+- All data stored locally in browser
+
+## 🚀 How to Use
+
+### Option 1: View Online (Recommended)
+Visit: **https://adshen.github.io/stock-simulator/**
+
+### Option 2: Local Development
 ```bash
 cd stock-simulator
 python3 -m http.server 8000
+# Visit http://localhost:8000
 ```
 
-#### 使用 Node.js 启动服务器（需要先安装 http-server）：
-```bash
-cd stock-simulator
-npx http-server -p 8000
+### 📱 Full-Screen Mobile Experience
+
+#### For iPhone:
+1. Open the website in Safari
+2. Tap the Share button (📤)
+3. Select "Add to Home Screen"
+4. Open from home screen for full-screen app experience!
+
+#### For Android:
+1. Open the website in Chrome
+2. Tap the menu (⋮)
+3. Select "Add to Home Screen" or "Install App"
+4. Open from home screen for full-screen experience!
+
+#### In-App Fullscreen:
+- Tap the fullscreen button (⛶) in the top right corner
+
+## 🎨 Pages & Navigation
+
+### 1. Account Page (Home)
+- Total account value with today's change
+- Quick action buttons (Buy, Sell, Transfer)
+- Position preview
+- Cash and buying power details
+
+### 2. Positions Page
+- Complete list of all stock holdings
+- Individual stock performance
+- Cost basis and current value
+- Unrealized gains/losses
+
+### 3. Markets Page
+- Major indices (S&P 500, Dow Jones, NASDAQ)
+- Watchlist with mini charts
+- Stock search functionality
+- Real-time price updates (simulated)
+
+### 4. Trade Page
+- Recent trade history
+- Buy/Sell/Hold badges
+- Transaction details
+- Trade type tabs (Stocks, Options, ETFs)
+
+### 5. More Page
+- Account settings
+- Statements & documents
+- Tax center
+- Research & insights
+- Help & support
+
+## 🎭 Demo Mode Tips
+
+### Creating Realistic Screenshots
+1. **Long press** the account card to open settings
+2. Set your desired values:
+   - Name: "Michael Chen", "Sarah Johnson", etc.
+   - Total Value: Any amount (e.g., "1250000" for $1.25M)
+   - Cash Available: Portion of total (e.g., "250000")
+   - Today's Change: Profit or loss (e.g., "15234.50" or "-8234.67")
+3. Tap "Save Changes"
+4. Take screenshots!
+
+### Hidden Features
+- **Long press** account card: Secret settings
+- **Eye icon**: Hide/show balances
+- **Fullscreen button**: Enter fullscreen mode
+- All buttons provide visual feedback
+
+## 🛠️ Technical Details
+
+### Built With
+- Pure HTML5, CSS3, JavaScript (ES6+)
+- No frameworks or dependencies
+- Progressive Web App (PWA) enabled
+- Service Worker for offline support
+- LocalStorage for settings persistence
+
+### Browser Support
+- Chrome/Edge (recommended)
+- Safari (iOS & macOS)
+- Firefox
+- Any modern mobile browser
+
+### Files
+- `index.html` - Main structure
+- `style.css` - Styling and animations
+- `script.js` - All interactive functionality
+- `manifest.json` - PWA configuration
+- `sw.js` - Service Worker for offline support
+
+## 🔐 Privacy & Security
+
+- **No real trading** - This is a simulator only
+- **No data sent** - Everything runs locally in your browser
+- **No accounts** - No login or registration required
+- **No tracking** - No analytics or cookies
+
+## 📝 Customization
+
+### Changing Colors
+Edit `style.css` and modify the CSS variables:
+```css
+:root {
+    --primary-color: #00a0df;  /* Main blue */
+    --success-color: #10b981;  /* Green for profits */
+    --danger-color: #ef4444;   /* Red for losses */
+}
 ```
 
-然后：
-1. 确保手机和电脑在同一个 WiFi 网络下
-2. 在终端中查看你的本地 IP 地址：
-   - Mac/Linux: `ifconfig | grep inet`
-   - Windows: `ipconfig`
-3. 在手机浏览器中访问：`http://你的IP地址:8000`
-   - 例如：`http://192.168.1.100:8000`
+### Adding More Stocks
+Edit the stock lists in `index.html` - just copy and paste existing stock items and change the symbols/names/values.
 
-### 在手机上实现全屏体验
+### Modifying Holdings
+Change the position items in the HTML to show different stocks, quantities, and P&L.
 
-#### iPhone (Safari):
-1. 打开网页后，点击底部的"分享"按钮
-2. 选择"添加到主屏幕"
-3. 从主屏幕打开应用，即可获得全屏体验
+## 📱 Screenshots
 
-#### Android (Chrome):
-1. 打开网页后，点击右上角的菜单按钮
-2. 选择"添加到主屏幕"或"安装应用"
-3. 从主屏幕打开应用，即可获得全屏体验
+Perfect for:
+- UI/UX portfolio demonstrations
+- Financial app mockups
+- Trading education materials
+- Social media posts
+- Pranking friends (use responsibly! 😄)
 
-## 文件说明
+## ⚠️ Disclaimer
 
-- `index.html` - 主HTML文件
-- `style.css` - 样式文件
-- `script.js` - JavaScript交互逻辑
-- `README.md` - 说明文档
+This is a **simulator for demonstration purposes only**. No real trading occurs. All data is fictional and for display purposes only. Not affiliated with Charles Schwab or any financial institution.
 
-## 技术特性
+## 📄 License
 
-- 响应式设计，自适应各种屏幕尺寸
-- PWA 特性，支持添加到主屏幕
-- 使用 viewport meta 标签优化移动端显示
-- CSS 渐变和阴影打造现代化界面
-- SVG 图标，矢量图形保证清晰度
-- 触摸优化，防止误触和提供触觉反馈
+Free to use for personal and educational purposes.
 
-## 自定义
+---
 
-你可以轻松修改：
-- 股票列表中的股票名称和代码
-- 资产数值
-- 颜色主题（在 style.css 中修改渐变色）
-- 添加更多股票项目
+**Made with ❤️ for traders, designers, and developers**
 
-祝你使用愉快！ 📈
-
+Enjoy your virtual trading experience! 🚀📊

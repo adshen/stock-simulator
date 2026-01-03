@@ -1,242 +1,510 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="mobile-web-app-capable" content="yes">
-    <title>股票交易</title>
+    <meta name="theme-color" content="#00a0df">
+    <link rel="manifest" href="manifest.json">
+    <title>Schwab Mobile</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="app-container">
         <!-- 顶部导航栏 -->
         <header class="header">
-            <div class="header-left">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
-                </svg>
-                <span>自选</span>
-            </div>
-            <div class="header-center">股票交易</div>
-            <div class="header-right">
-                <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <circle cx="11" cy="11" r="8"></circle>
-                    <path d="m21 21-4.35-4.35"></path>
-                </svg>
+            <div class="header-content">
+                <div class="user-greeting">
+                    <div class="greeting-text">Good Morning</div>
+                    <div class="user-name" id="userName">John Smith</div>
+                </div>
+                <div class="header-icons">
+                    <button class="icon-btn" onclick="showFullscreen()">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"></path>
+                        </svg>
+                    </button>
+                    <button class="icon-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                            <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
         </header>
 
-        <!-- 资产卡片 -->
-        <div class="asset-card">
-            <div class="asset-header">
-                <div class="asset-label">总资产 (元)</div>
-                <div class="asset-eye">
-                    <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                        <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
-                        <circle cx="12" cy="12" r="3"></circle>
-                    </svg>
-                </div>
-            </div>
-            <div class="asset-value">328,456.78</div>
-            <div class="asset-details">
-                <div class="asset-item">
-                    <div class="asset-item-label">今日盈亏</div>
-                    <div class="asset-item-value profit">+2,345.67</div>
-                    <div class="asset-item-percent profit">+0.72%</div>
-                </div>
-                <div class="asset-divider"></div>
-                <div class="asset-item">
-                    <div class="asset-item-label">持仓市值</div>
-                    <div class="asset-item-value">258,456.78</div>
-                </div>
-                <div class="asset-divider"></div>
-                <div class="asset-item">
-                    <div class="asset-item-label">可用资金</div>
-                    <div class="asset-item-value">70,000.00</div>
-                </div>
-            </div>
-        </div>
-
-        <!-- 标签页 -->
-        <div class="tabs">
-            <div class="tab active">自选股</div>
-            <div class="tab">持仓</div>
-            <div class="tab">行情</div>
-        </div>
-
-        <!-- 股票列表 -->
-        <div class="stock-list">
-            <!-- 股票项目1 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">招商银行</div>
-                        <div class="stock-code">600036</div>
+        <!-- 主内容区 -->
+        <main class="main-content">
+            <!-- 账户页面 -->
+            <div class="page active" id="accountPage">
+                <!-- 资产卡片 - 长按可打开设置 -->
+                <div class="account-card" id="accountCard">
+                    <div class="account-header">
+                        <span>Total Account Value</span>
+                        <button class="eye-btn" onclick="toggleAssetVisibility()">
+                            <svg class="eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </button>
                     </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart profit">
-                            <polyline points="0,25 10,20 20,22 30,15 40,18 50,12 60,8 70,10 80,5" fill="none" stroke="currentColor" stroke-width="1.5"/>
+                    <div class="account-value" id="totalValue">$428,567.89</div>
+                    <div class="account-change">
+                        <span class="change-value profit" id="todayChange">+$3,245.67</span>
+                        <span class="change-percent profit" id="todayPercent">(+0.76%)</span>
+                        <span class="change-label">Today</span>
+                    </div>
+                </div>
+
+                <!-- 账户详情 -->
+                <div class="account-details">
+                    <div class="detail-row">
+                        <span class="detail-label">Cash Available to Trade</span>
+                        <span class="detail-value" id="cashAvailable">$85,234.12</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Buying Power</span>
+                        <span class="detail-value">$170,468.24</span>
+                    </div>
+                    <div class="detail-row">
+                        <span class="detail-label">Total Gain/Loss</span>
+                        <span class="detail-value profit">+$54,321.89 (+14.52%)</span>
+                    </div>
+                </div>
+
+                <!-- 快捷操作 -->
+                <div class="quick-actions">
+                    <button class="action-btn primary" onclick="showTradeModal('BUY')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="12" y1="5" x2="12" y2="19"></line>
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
                         </svg>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price profit">42.68</div>
-                        <div class="change profit">+1.25%</div>
-                    </div>
+                        <span>Buy</span>
+                    </button>
+                    <button class="action-btn secondary" onclick="showTradeModal('SELL')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <line x1="5" y1="12" x2="19" y2="12"></line>
+                        </svg>
+                        <span>Sell</span>
+                    </button>
+                    <button class="action-btn" onclick="showToast('Transfer initiated')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <polyline points="17 1 21 5 17 9"></polyline>
+                            <path d="M3 11V9a4 4 0 0 1 4-4h14"></path>
+                            <polyline points="7 23 3 19 7 15"></polyline>
+                            <path d="M21 13v2a4 4 0 0 1-4 4H3"></path>
+                        </svg>
+                        <span>Transfer</span>
+                    </button>
                 </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
+
+                <!-- 持仓概览 -->
+                <div class="section-header">
+                    <h2>Positions</h2>
+                    <button class="link-btn" onclick="switchPage('positionsPage')">View All</button>
+                </div>
+                <div class="positions-preview">
+                    <div class="position-item" onclick="showStockDetail('AAPL')">
+                        <div class="position-info">
+                            <div class="stock-symbol">AAPL</div>
+                            <div class="stock-name">Apple Inc.</div>
+                            <div class="position-shares">125 shares</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$23,562.50</div>
+                            <div class="position-change profit">+$1,234.56 (+5.52%)</div>
+                        </div>
+                    </div>
+                    <div class="position-item" onclick="showStockDetail('TSLA')">
+                        <div class="position-info">
+                            <div class="stock-symbol">TSLA</div>
+                            <div class="stock-name">Tesla, Inc.</div>
+                            <div class="position-shares">50 shares</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$12,450.00</div>
+                            <div class="position-change loss">-$678.90 (-5.17%)</div>
+                        </div>
+                    </div>
+                    <div class="position-item" onclick="showStockDetail('MSFT')">
+                        <div class="position-info">
+                            <div class="stock-symbol">MSFT</div>
+                            <div class="stock-name">Microsoft Corporation</div>
+                            <div class="position-shares">80 shares</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$31,280.00</div>
+                            <div class="position-change profit">+$2,145.30 (+7.36%)</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 股票项目2 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">贵州茅台</div>
-                        <div class="stock-code">600519</div>
-                    </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart profit">
-                            <polyline points="0,20 10,18 20,15 30,17 40,12 50,10 60,8 70,6 80,4" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price profit">1,678.50</div>
-                        <div class="change profit">+2.34%</div>
-                    </div>
+            <!-- 持仓页面 -->
+            <div class="page" id="positionsPage">
+                <div class="page-header">
+                    <h1>Positions</h1>
                 </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
-                </div>
-            </div>
-
-            <!-- 股票项目3 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">比亚迪</div>
-                        <div class="stock-code">002594</div>
+                <div class="positions-list">
+                    <div class="position-item" onclick="showStockDetail('AAPL')">
+                        <div class="position-info">
+                            <div class="stock-symbol">AAPL</div>
+                            <div class="stock-name">Apple Inc.</div>
+                            <div class="position-shares">125 shares @ $188.50 avg</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$23,562.50</div>
+                            <div class="position-change profit">+$1,234.56 (+5.52%)</div>
+                        </div>
                     </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart loss">
-                            <polyline points="0,5 10,8 20,12 30,10 40,15 50,18 60,20 70,22 80,25" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
+                    <div class="position-item" onclick="showStockDetail('TSLA')">
+                        <div class="position-info">
+                            <div class="stock-symbol">TSLA</div>
+                            <div class="stock-name">Tesla, Inc.</div>
+                            <div class="position-shares">50 shares @ $249.00 avg</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$12,450.00</div>
+                            <div class="position-change loss">-$678.90 (-5.17%)</div>
+                        </div>
                     </div>
-                    <div class="stock-price">
-                        <div class="price loss">268.45</div>
-                        <div class="change loss">-0.88%</div>
+                    <div class="position-item" onclick="showStockDetail('MSFT')">
+                        <div class="position-info">
+                            <div class="stock-symbol">MSFT</div>
+                            <div class="stock-name">Microsoft Corporation</div>
+                            <div class="position-shares">80 shares @ $391.00 avg</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$31,280.00</div>
+                            <div class="position-change profit">+$2,145.30 (+7.36%)</div>
+                        </div>
                     </div>
-                </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
-                </div>
-            </div>
-
-            <!-- 股票项目4 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">宁德时代</div>
-                        <div class="stock-code">300750</div>
+                    <div class="position-item" onclick="showStockDetail('NVDA')">
+                        <div class="position-info">
+                            <div class="stock-symbol">NVDA</div>
+                            <div class="stock-name">NVIDIA Corporation</div>
+                            <div class="position-shares">100 shares @ $495.30 avg</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$49,530.00</div>
+                            <div class="position-change profit">+$4,230.00 (+9.33%)</div>
+                        </div>
                     </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart profit">
-                            <polyline points="0,22 10,20 20,18 30,16 40,14 50,11 60,9 70,7 80,6" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
+                    <div class="position-item" onclick="showStockDetail('GOOGL')">
+                        <div class="position-info">
+                            <div class="stock-symbol">GOOGL</div>
+                            <div class="stock-name">Alphabet Inc.</div>
+                            <div class="position-shares">150 shares @ $140.25 avg</div>
+                        </div>
+                        <div class="position-values">
+                            <div class="position-value">$21,037.50</div>
+                            <div class="position-change profit">+$987.50 (+4.92%)</div>
+                        </div>
                     </div>
-                    <div class="stock-price">
-                        <div class="price profit">456.78</div>
-                        <div class="change profit">+1.67%</div>
-                    </div>
-                </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
                 </div>
             </div>
 
-            <!-- 股票项目5 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">中国平安</div>
-                        <div class="stock-code">601318</div>
-                    </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart loss">
-                            <polyline points="0,10 10,12 20,14 30,13 40,16 50,19 60,21 70,23 80,24" fill="none" stroke="currentColor" stroke-width="1.5"/>
+            <!-- 行情页面 -->
+            <div class="page" id="marketPage">
+                <div class="page-header">
+                    <h1>Markets</h1>
+                    <div class="search-box">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="11" cy="11" r="8"></circle>
+                            <path d="m21 21-4.35-4.35"></path>
                         </svg>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price loss">52.34</div>
-                        <div class="change loss">-1.23%</div>
+                        <input type="text" placeholder="Search stocks, ETFs...">
                     </div>
                 </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
+                
+                <div class="market-indices">
+                    <h3>Indices</h3>
+                    <div class="index-list">
+                        <div class="index-item">
+                            <div class="index-name">S&P 500</div>
+                            <div class="index-value">4,783.45</div>
+                            <div class="index-change profit">+24.56 (+0.52%)</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">Dow Jones</div>
+                            <div class="index-value">37,545.33</div>
+                            <div class="index-change profit">+156.78 (+0.42%)</div>
+                        </div>
+                        <div class="index-item">
+                            <div class="index-name">NASDAQ</div>
+                            <div class="index-value">15,074.57</div>
+                            <div class="index-change profit">+89.23 (+0.60%)</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="watchlist">
+                    <h3>Watchlist</h3>
+                    <div class="stock-list">
+                        <div class="stock-item" onclick="showStockDetail('AAPL')">
+                            <div class="stock-info">
+                                <div class="stock-symbol">AAPL</div>
+                                <div class="stock-name">Apple Inc.</div>
+                            </div>
+                            <div class="stock-chart">
+                                <svg viewBox="0 0 80 30" class="mini-chart">
+                                    <polyline points="0,20 10,18 20,15 30,17 40,12 50,10 60,8 70,6 80,4" fill="none" stroke="#10b981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="stock-price">
+                                <div class="price">$188.50</div>
+                                <div class="change profit">+2.35%</div>
+                            </div>
+                        </div>
+                        <div class="stock-item" onclick="showStockDetail('TSLA')">
+                            <div class="stock-info">
+                                <div class="stock-symbol">TSLA</div>
+                                <div class="stock-name">Tesla, Inc.</div>
+                            </div>
+                            <div class="stock-chart">
+                                <svg viewBox="0 0 80 30" class="mini-chart">
+                                    <polyline points="0,5 10,8 20,12 30,10 40,15 50,18 60,20 70,22 80,25" fill="none" stroke="#ef4444" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="stock-price">
+                                <div class="price">$249.00</div>
+                                <div class="change loss">-1.24%</div>
+                            </div>
+                        </div>
+                        <div class="stock-item" onclick="showStockDetail('MSFT')">
+                            <div class="stock-info">
+                                <div class="stock-symbol">MSFT</div>
+                                <div class="stock-name">Microsoft Corp.</div>
+                            </div>
+                            <div class="stock-chart">
+                                <svg viewBox="0 0 80 30" class="mini-chart">
+                                    <polyline points="0,18 10,16 20,19 30,14 40,13 50,10 60,12 70,8 80,7" fill="none" stroke="#10b981" stroke-width="2"/>
+                                </svg>
+                            </div>
+                            <div class="stock-price">
+                                <div class="price">$391.00</div>
+                                <div class="change profit">+1.87%</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
-            <!-- 股票项目6 -->
-            <div class="stock-item">
-                <div class="stock-main">
-                    <div class="stock-info">
-                        <div class="stock-name">腾讯控股</div>
-                        <div class="stock-code">00700</div>
-                    </div>
-                    <div class="stock-chart">
-                        <svg viewBox="0 0 80 30" class="mini-chart profit">
-                            <polyline points="0,18 10,16 20,19 30,14 40,13 50,10 60,12 70,8 80,7" fill="none" stroke="currentColor" stroke-width="1.5"/>
-                        </svg>
-                    </div>
-                    <div class="stock-price">
-                        <div class="price profit">389.60</div>
-                        <div class="change profit">+0.95%</div>
-                    </div>
+            <!-- 交易页面 -->
+            <div class="page" id="tradePage">
+                <div class="page-header">
+                    <h1>Trade</h1>
                 </div>
-                <div class="stock-actions">
-                    <button class="btn btn-buy">买入</button>
-                    <button class="btn btn-sell">卖出</button>
+                <div class="trade-tabs">
+                    <button class="trade-tab active" onclick="selectTradeTab('stocks')">Stocks</button>
+                    <button class="trade-tab" onclick="selectTradeTab('options')">Options</button>
+                    <button class="trade-tab" onclick="selectTradeTab('etfs')">ETFs</button>
+                </div>
+                <div class="recent-trades">
+                    <h3>Recent Trades</h3>
+                    <div class="trade-list">
+                        <div class="trade-item">
+                            <div class="trade-badge buy">BUY</div>
+                            <div class="trade-info">
+                                <div class="trade-symbol">AAPL</div>
+                                <div class="trade-details">25 shares @ $188.50</div>
+                                <div class="trade-date">Jan 2, 2026</div>
+                            </div>
+                            <div class="trade-total">$4,712.50</div>
+                        </div>
+                        <div class="trade-item">
+                            <div class="trade-badge sell">SELL</div>
+                            <div class="trade-info">
+                                <div class="trade-symbol">TSLA</div>
+                                <div class="trade-details">10 shares @ $252.30</div>
+                                <div class="trade-date">Dec 28, 2025</div>
+                            </div>
+                            <div class="trade-total">$2,523.00</div>
+                        </div>
+                        <div class="trade-item">
+                            <div class="trade-badge buy">BUY</div>
+                            <div class="trade-info">
+                                <div class="trade-symbol">NVDA</div>
+                                <div class="trade-details">50 shares @ $495.30</div>
+                                <div class="trade-date">Dec 20, 2025</div>
+                            </div>
+                            <div class="trade-total">$24,765.00</div>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
+
+            <!-- 更多页面 -->
+            <div class="page" id="morePage">
+                <div class="page-header">
+                    <h1>More</h1>
+                </div>
+                <div class="menu-list">
+                    <div class="menu-item" onclick="showToast('Account Settings')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="3"></circle>
+                            <path d="M12 1v6m0 6v6m5.66-13L14 10m-4 4-3.66 6.34M23 12h-6m-6 0H5m13.66 5.66L14 14m-4-4-3.66-3.66"></path>
+                        </svg>
+                        <span>Account Settings</span>
+                    </div>
+                    <div class="menu-item" onclick="showToast('Statements & Documents')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14 2 14 8 20 8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10 9 9 9 8 9"></polyline>
+                        </svg>
+                        <span>Statements & Documents</span>
+                    </div>
+                    <div class="menu-item" onclick="showToast('Tax Center')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect>
+                            <line x1="3" y1="9" x2="21" y2="9"></line>
+                            <line x1="9" y1="21" x2="9" y2="9"></line>
+                        </svg>
+                        <span>Tax Center</span>
+                    </div>
+                    <div class="menu-item" onclick="showToast('Research & Insights')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path>
+                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline>
+                            <line x1="12" y1="22.08" x2="12" y2="12"></line>
+                        </svg>
+                        <span>Research & Insights</span>
+                    </div>
+                    <div class="menu-item" onclick="showToast('Help & Support')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <circle cx="12" cy="12" r="10"></circle>
+                            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+                            <line x1="12" y1="17" x2="12.01" y2="17"></line>
+                        </svg>
+                        <span>Help & Support</span>
+                    </div>
+                    <div class="menu-item" onclick="showToast('Security Settings')">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                        </svg>
+                        <span>Security Settings</span>
+                    </div>
+                </div>
+            </div>
+        </main>
 
         <!-- 底部导航 -->
         <nav class="bottom-nav">
-            <div class="nav-item active">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <button class="nav-item active" onclick="switchPage('accountPage')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
                 </svg>
-                <span>自选</span>
-            </div>
-            <div class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <span>Account</span>
+            </button>
+            <button class="nav-item" onclick="switchPage('positionsPage')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="18" y1="20" x2="18" y2="10"></line>
+                    <line x1="12" y1="20" x2="12" y2="4"></line>
+                    <line x1="6" y1="20" x2="6" y2="14"></line>
+                </svg>
+                <span>Positions</span>
+            </button>
+            <button class="nav-item" onclick="switchPage('marketPage')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                </svg>
+                <span>Markets</span>
+            </button>
+            <button class="nav-item" onclick="switchPage('tradePage')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
                     <line x1="12" y1="1" x2="12" y2="23"></line>
                     <path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path>
                 </svg>
-                <span>行情</span>
-            </div>
-            <div class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline>
+                <span>Trade</span>
+            </button>
+            <button class="nav-item" onclick="switchPage('morePage')">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                    <line x1="3" y1="12" x2="21" y2="12"></line>
+                    <line x1="3" y1="6" x2="21" y2="6"></line>
+                    <line x1="3" y1="18" x2="21" y2="18"></line>
                 </svg>
-                <span>交易</span>
-            </div>
-            <div class="nav-item">
-                <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-                <span>我的</span>
-            </div>
+                <span>More</span>
+            </button>
         </nav>
     </div>
+
+    <!-- 交易弹窗 -->
+    <div class="modal" id="tradeModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="tradeModalTitle">Buy Stock</h2>
+                <button class="close-btn" onclick="closeModal('tradeModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Symbol</label>
+                    <input type="text" placeholder="e.g., AAPL" id="tradeSymbol">
+                </div>
+                <div class="form-group">
+                    <label>Quantity</label>
+                    <input type="number" placeholder="Number of shares" id="tradeQuantity">
+                </div>
+                <div class="form-group">
+                    <label>Order Type</label>
+                    <select id="orderType">
+                        <option>Market Order</option>
+                        <option>Limit Order</option>
+                        <option>Stop Order</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Estimated Total</label>
+                    <div class="estimated-total">$0.00</div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('tradeModal')">Cancel</button>
+                <button class="btn-primary" onclick="confirmTrade()">Review Order</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置弹窗 -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2>Settings</h2>
+                <button class="close-btn" onclick="closeModal('settingsModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" id="settingsUserName" placeholder="Enter your name">
+                </div>
+                <div class="form-group">
+                    <label>Total Account Value ($)</label>
+                    <input type="text" id="settingsTotalValue" placeholder="e.g., 428567.89">
+                </div>
+                <div class="form-group">
+                    <label>Cash Available ($)</label>
+                    <input type="text" id="settingsCashAvailable" placeholder="e.g., 85234.12">
+                </div>
+                <div class="form-group">
+                    <label>Today's Change ($)</label>
+                    <input type="text" id="settingsTodayChange" placeholder="e.g., 3245.67">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('settingsModal')">Cancel</button>
+                <button class="btn-primary" onclick="saveSettings()">Save Changes</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast 通知 -->
+    <div class="toast" id="toast"></div>
 
     <script src="script.js"></script>
 </body>
