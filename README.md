@@ -1,6 +1,6 @@
-# Schwab Mobile Trading Simulator 📈
+# Stock Trading Simulator 📈
 
-A fully-featured US stock trading simulator inspired by Charles Schwab's mobile app design. Perfect for demos, screenshots, or practicing trading interfaces!
+A fully-featured US stock trading simulator with professional mobile-first design. Perfect for demos, screenshots, or practicing trading interfaces!
 
 ## ✨ Features
 
@@ -173,7 +173,7 @@ Perfect for:
 
 ## ⚠️ Disclaimer
 
-This is a **simulator for demonstration purposes only**. No real trading occurs. All data is fictional and for display purposes only. Not affiliated with Charles Schwab or any financial institution.
+This is a **simulator for demonstration purposes only**. No real trading occurs. All data is fictional and for display purposes only. Not affiliated with any financial institution.
 
 ## 📄 License
 
