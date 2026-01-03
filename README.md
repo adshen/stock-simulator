@@ -122,8 +122,6 @@ python3 -m http.server 8000
 - `index.html` - Main structure
 - `style.css` - Styling and animations
 - `script.js` - All interactive functionality
-- `favicon.svg` - Browser tab icon
-- `icon.svg` - App icon
 
 ## 🔐 Privacy & Security
 
