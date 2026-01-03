@@ -139,11 +139,11 @@ function openSettings() {
     document.getElementById('settingsUserName').value = 
         localStorage.getItem('userName') || 'John Smith';
     document.getElementById('settingsTotalValue').value = 
-        localStorage.getItem('totalValue') || '428567.89';
+        localStorage.getItem('totalValue') || '6287647.89';
     document.getElementById('settingsCashAvailable').value = 
-        localStorage.getItem('cashAvailable') || '85234.12';
+        localStorage.getItem('cashAvailable') || '1250000.00';
     document.getElementById('settingsTodayChange').value = 
-        localStorage.getItem('todayChange') || '3245.67';
+        localStorage.getItem('todayChange') || '47658.32';
     
     modal.classList.add('active');
     showToast('Settings opened - Long press detected!');
@@ -181,9 +181,9 @@ function loadSettings() {
 
 function updateDisplay() {
     const userName = localStorage.getItem('userName') || 'John Smith';
-    const totalValue = localStorage.getItem('totalValue') || '428567.89';
-    const cashAvailable = localStorage.getItem('cashAvailable') || '85234.12';
-    const todayChange = localStorage.getItem('todayChange') || '3245.67';
+    const totalValue = localStorage.getItem('totalValue') || '6287647.89';
+    const cashAvailable = localStorage.getItem('cashAvailable') || '1250000.00';
+    const todayChange = localStorage.getItem('todayChange') || '47658.32';
     
     // 更新用户名
     document.getElementById('userName').textContent = userName;

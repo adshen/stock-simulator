@@ -107,9 +107,9 @@ python3 -m http.server 8000
 1. **Long press** the account card to open settings
 2. Set your desired values:
    - Name: "Michael Chen", "Sarah Johnson", etc.
-   - Total Value: Any amount (e.g., "1250000" for $1.25M)
-   - Cash Available: Portion of total (e.g., "250000")
-   - Today's Change: Profit or loss (e.g., "15234.50" or "-8234.67")
+   - Total Value: Any amount (default: "6287647.89" for $6.29M)
+   - Cash Available: Portion of total (default: "1250000")
+   - Today's Change: Profit or loss (default: "47658.32")
 3. Tap "Save Changes"
 4. Take screenshots!
 
