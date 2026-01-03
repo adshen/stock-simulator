@@ -50,9 +50,23 @@ python3 -m http.server 8000
 
 ### 📱 Full-Screen Experience
 
-- Tap the fullscreen button (⛶) in the top right corner to enter fullscreen mode
+#### Method 1: Add to Home Screen (Recommended for Mobile)
+**iPhone/iPad:**
+1. Open the website in Safari
+2. Tap the Share button (📤)
+3. Select "Add to Home Screen"
+4. Open from home screen → Runs in full-screen mode automatically!
+
+**Android:**
+1. Open the website in Chrome
+2. Tap the menu (⋮)
+3. Select "Add to Home Screen"
+4. Open from home screen → Runs in full-screen mode automatically!
+
+#### Method 2: Manual Fullscreen Button
+- Tap the fullscreen button (⛶) in the top right corner
 - Works on both desktop and mobile browsers
-- Exit fullscreen by pressing ESC or tapping the button again
+- Exit by pressing ESC or tapping the button again
 
 ## 🎨 Pages & Navigation
 
