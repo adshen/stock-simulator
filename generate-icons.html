@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Generate App Icons</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #00a0df;
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 1px solid #ddd;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        .preview {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .icon-box {
+            text-align: center;
+        }
+        button {
+            background: #00a0df;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0066a1;
+        }
+        .instructions {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📱 Schwab Icon Generator</h1>
+        <p>Generate app icons for your stock trading simulator.</p>
+        
+        <div class="preview">
+            <div class="icon-box">
+                <h3>192x192</h3>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon192', 'icon-192.png')">Download</button>
+            </div>
+            <div class="icon-box">
+                <h3>512x512</h3>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <br>
+                <button onclick="downloadIcon('icon512', 'icon-512.png')">Download</button>
+            </div>
+        </div>
+
+        <div class="instructions">
+            <strong>Instructions:</strong><br>
+            1. Click the download buttons to save the icons<br>
+            2. Icons will be saved as icon-192.png and icon-512.png<br>
+            3. The icons are automatically referenced in your app's manifest.json
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas) {
+            const ctx = canvas.getContext('2d');
+            const size = canvas.width;
+            const scale = size / 512;
+
+            // Background
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#00a0df');
+            gradient.addColorStop(1, '#0066a1');
+            ctx.fillStyle = gradient;
+            ctx.beginPath();
+            ctx.roundRect(0, 0, size, size, size * 0.15);
+            ctx.fill();
+
+            // Chart line
+            ctx.strokeStyle = 'white';
+            ctx.lineWidth = 24 * scale;
+            ctx.lineCap = 'round';
+            ctx.lineJoin = 'round';
+            
+            ctx.beginPath();
+            ctx.moveTo(80 * scale, 380 * scale);
+            ctx.lineTo(140 * scale, 320 * scale);
+            ctx.lineTo(200 * scale, 340 * scale);
+            ctx.lineTo(260 * scale, 260 * scale);
+            ctx.lineTo(320 * scale, 280 * scale);
+            ctx.lineTo(380 * scale, 200 * scale);
+            ctx.lineTo(432 * scale, 160 * scale);
+            ctx.stroke();
+
+            // Dots
+            const dots = [
+                [80, 380], [140, 320], [200, 340], 
+                [260, 260], [320, 280], [380, 200], [432, 160]
+            ];
+            
+            ctx.fillStyle = 'white';
+            dots.forEach(([x, y]) => {
+                ctx.beginPath();
+                ctx.arc(x * scale, y * scale, 12 * scale, 0, Math.PI * 2);
+                ctx.fill();
+            });
+
+            // "S" letter
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${120 * scale}px Arial, sans-serif`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            ctx.fillText('S', 256 * scale, 120 * scale);
+        }
+
+        // Draw icons on page load
+        drawIcon(document.getElementById('icon192'));
+        drawIcon(document.getElementById('icon512'));
+
+        function downloadIcon(canvasId, filename) {
+            const canvas = document.getElementById(canvasId);
+            const link = document.createElement('a');
+            link.download = filename;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
+
